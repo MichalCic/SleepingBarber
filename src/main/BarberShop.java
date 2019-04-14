@@ -1,28 +1,32 @@
 package main;
 
+import java.util.Random;
+
 public class BarberShop {
 
-	public static void main(String[] args) throws InterruptedException {
-//		Barber barber = new Barber();
-//		barber.setName("Barber");
-//		barber.start();
-		
+	public static void main(String[] args) throws InterruptedException {	
+		Random rng = new Random();
 		Chair chair = new Chair();
 
-		Customer joe = new Customer(chair);
-		joe.setName("Joe");
-		Customer johnny = new Customer(chair);
-		johnny.setName("Johnny");
-		Customer jack = new Customer(chair);
-		jack.setName("Jack");
+		Customer customer1 = new Customer(chair);
+		customer1.setName("Joe");
+		Customer customer2 = new Customer(chair);
+		customer2.setName("Johnny");
+		Customer customer3 = new Customer(chair);
+		customer3.setName("Jack");
+		Customer customer4 = new Customer(chair);
+		customer4.setName("Jermaine");
 
-		//Thread.sleep(1000);
-		joe.start();
+		//Thread.sleep(rng.nextInt(2000));
+		customer1.start();
 		
-		//Thread.sleep(6000);
-		jack.start();
+		//Thread.sleep(rng.nextInt(2000));
+		customer2.start();
 		
-		Thread.sleep(3000);
-		johnny.start();
+		//Thread.sleep(rng.nextInt(2000));
+		customer3.start();
+		
+		//Thread.sleep(rng.nextInt(2000));
+		customer4.start();
 	}
 }
