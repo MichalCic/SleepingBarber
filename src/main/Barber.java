@@ -1,17 +1,18 @@
 package main;
 
 public class Barber extends Thread {
-	Chair chair;
+	BarberShop barberShop;
 	
-	public Barber(Chair chair) {
-		this.chair = chair;
+	public Barber(BarberShop barberShop) {
+		this.barberShop = barberShop;
 	}
 	
 	@Override
 	public void run() {
 		try {
-			chair.sitDown();
+			barberShop.nap();
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.run();

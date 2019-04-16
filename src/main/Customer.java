@@ -1,16 +1,16 @@
 package main;
 
 public class Customer extends Thread {
-	Chair chair;
+	BarberShop barberShop;
 	
-	public Customer(Chair chair) {
-		this.chair = chair;
+	public Customer(BarberShop barberShop) {
+		this.barberShop = barberShop;
 	}
 	
 	@Override
 	public void run() {
 		try {
-			chair.sitDown();
+			barberShop.enterShop();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
