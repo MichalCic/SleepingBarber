@@ -38,12 +38,8 @@ public class BarberShop {
 		}
 	}
 
-	public void cutHair() throws InterruptedException {
+	private void cutHair() throws InterruptedException {
 		Thread.sleep(1500);
-	}
-
-	public void sleep() throws InterruptedException {
-		Thread.sleep(3000);
 	}
 
 	public boolean hasCustomers() {
