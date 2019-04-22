@@ -6,6 +6,7 @@ public class Main {
 		BarberShop barberShop = new BarberShop();
 		
 		Barber barber = new Barber(barberShop);
+		barber.setName("Barber");
 		barber.start();
 
 		Customer customer1 = new Customer(barberShop);
@@ -17,12 +18,9 @@ public class Main {
 		Customer customer4 = new Customer(barberShop);
 		customer4.setName("Jermaine");
 
-		customer1.start();
-		
-		customer2.start();
-		
-		customer3.start();
-		
+		customer1.start();	
+		customer2.start();	
+		customer3.start();		
 		customer4.start();
 	}
 }

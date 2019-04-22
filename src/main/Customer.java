@@ -16,4 +16,8 @@ public class Customer extends Thread {
 		}
 		super.run();
 	}
+	
+	public void sitInBarbersChair() throws InterruptedException {
+		barberShop.getHaircut(this);
+	}
 }

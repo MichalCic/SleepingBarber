@@ -1,54 +1,52 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BarberShop {
-	private List<String> names = new ArrayList<String>();
-	private AtomicInteger customers = new AtomicInteger();
-	// private BlockingQueue<String> waitingRoom = new
-	// LinkedBlockingQueue<String>(3);
-	private boolean isCuttingHair = false;
-
-	public void enterShop() throws InterruptedException {
-		System.out.println(customers.incrementAndGet() + " customers are in the queue.\n");
-
-		sitDown();
+	private Queue<Customer> customerLine = new LinkedList<Customer>();
+	
+	public synchronized void enterShop() throws InterruptedException {
+		Customer customer = (Customer) Thread.currentThread();
+		System.out.println(customer.getName() + " arrived.");
+		customerLine.offer(customer);
+		notifyAll();
 	}
 
-	public synchronized void sitDown() throws InterruptedException {
-		String name = Thread.currentThread().getName();
+	public synchronized void getHaircut(Customer customer) throws InterruptedException {
+		String name = customer.getName();
 
-		if (!isCuttingHair)
-			System.out.println(name + " wakes up the barber.\n");
-
-		isCuttingHair = true;
-		System.out.println("The barber is cutting " + name + "'s hair...\n");
+		System.out.println("The barber is cutting " + name + "'s hair...");
 		cutHair();
-		System.out.println(name + "'s hair is done.\n");
-
-		if (customers.get() <= 1)
-			isCuttingHair = false;
-
-		if (customers.decrementAndGet() == 0)
-			notifyAll();
+		System.out.println(name + "'s hair is done.");
 	}
 
-	public synchronized void nap() throws InterruptedException {
-		while (customers.get() == 0) {
-			System.out.println("Baber is sleeping in his chair...\n");
-			wait();
+	public synchronized void work() throws InterruptedException {
+		while (true) {
+			while (customerLine.size() == 0) {
+				System.out.println("Baber is sleeping in his chair...");
+				wait();
+			}
+			
+			serveCustomers();
+		} 
+	}
+
+	private void serveCustomers() throws InterruptedException {
+		while (!customerLine.isEmpty()) {
+			customerLine.poll().sitInBarbersChair();;
 		}
 	}
 
 	public void cutHair() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(1500);
 	}
 
 	public void sleep() throws InterruptedException {
 		Thread.sleep(3000);
+	}
+
+	public boolean hasCustomers() {
+		return !customerLine.isEmpty();
 	}
 }
