@@ -3,6 +3,7 @@ package main;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {	
+		//most of the monitoring and synchronization happens here 
 		BarberShop barberShop = new BarberShop();
 		
 		Barber barber = new Barber(barberShop);
@@ -18,8 +19,8 @@ public class Main {
 		Customer customer4 = new Customer(barberShop);
 		customer4.setName("Jermaine");
 
-		customer1.start();	
-		customer2.start();	
+		customer1.start();
+		customer2.start();
 		customer3.start();		
 		customer4.start();
 	}

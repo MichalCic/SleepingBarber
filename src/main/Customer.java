@@ -17,6 +17,8 @@ public class Customer extends Thread {
 		super.run();
 	}
 	
+	// this is called by the barber thread to continue execution after 
+	// this thread was waiting in the queue
 	public void sitInBarbersChair() throws InterruptedException {
 		barberShop.getHaircut(this);
 	}
