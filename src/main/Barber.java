@@ -3,7 +3,7 @@ package main;
 public class Barber extends Thread {
 	BarberShop barberShop;
 
-	public Barber(BarberShop barberShop) {
+	Barber(BarberShop barberShop) {
 		this.barberShop = barberShop;
 	}
 
