@@ -1,1 +1,1 @@
-*__The sleeping barber problem is a classic inter-process communication and synchronization problem between multiple operating system processes.__* [-Wikipedia](https://en.wikipedia.org/wiki/Sleeping_barber_problem)
+*__The sleeping barber problem is a classic inter-process communication and synchronization problem between multiple operating system processes.__* [Wikipedia](https://en.wikipedia.org/wiki/Sleeping_barber_problem)
